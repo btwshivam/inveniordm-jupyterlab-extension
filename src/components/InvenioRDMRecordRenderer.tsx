@@ -16,6 +16,7 @@ import { InvenioRDMRecordAuthors } from './InvenioRDMRecordAuthors';
 export type InvenioRDMRecordRendererProps = {
   record: InvenioRDMRecordData;
   versions: InvenioRDMRecordVersion[];
+  isLoadingVersions: boolean;
   selectRecord: (identifier: InvenioRDMRecordIdentifier) => void;
   recordIdentifier: InvenioRDMRecordIdentifier; // TODO we need to pass this so that pending versions are displayed correctly in the dropdown. Maybe refactor this to avoid passing the identifier separately.
   hasEditingRights?: boolean;
@@ -45,6 +46,7 @@ export const InvenioRDMRecordRenderer: React.FC<
   record,
   hasEditingRights = false,
   versions,
+  isLoadingVersions,
   recordIdentifier,
   selectRecord
 }) => {
@@ -59,6 +61,7 @@ export const InvenioRDMRecordRenderer: React.FC<
           record={record}
           hasEditingRights={hasEditingRights}
           versions={versions}
+          isLoadingVersions={isLoadingVersions}
           recordIdentifier={recordIdentifier}
           selectRecord={selectRecord}
         />
@@ -95,6 +98,7 @@ const InvenioRDMRecordRendererHeader: React.FC<
   record,
   hasEditingRights = false,
   versions,
+  isLoadingVersions,
   recordIdentifier,
   selectRecord
 }) => {
@@ -119,6 +123,7 @@ const InvenioRDMRecordRendererHeader: React.FC<
           <div className="min-w-0 flex-1">
             <VersionDropdown
               versions={versions}
+              isLoading={isLoadingVersions}
               recordIdentifier={recordIdentifier}
               onChange={identifier => {
                 selectRecord(identifier);

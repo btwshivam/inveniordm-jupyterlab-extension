@@ -654,6 +654,17 @@ export type InvenioRDMFile = {
     download?: string;
   };
 };
+
+/** A person or organization credited as a record creator. */
+export type InvenioRDMCreator = {
+  person_or_org: {
+    type?: 'personal' | 'organizational' | string;
+    name?: string;
+    given_name?: string;
+    family_name?: string;
+  };
+};
+
 type InvenioRDMRecordStatus =
   'new_version_draft' | 'draft' | 'published' | string;
 // TODO check if these fields exist/ if they are always present
@@ -665,6 +676,7 @@ export type InvenioRDMRecordData = {
   status: InvenioRDMRecordStatus;
   metadata?: {
     title?: string;
+    creators?: InvenioRDMCreator[];
   };
   created: string; // format e.g. "2025-04-07T13:20:56.868888+00:00"
   updated: string;

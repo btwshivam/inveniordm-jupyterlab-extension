@@ -10,6 +10,7 @@ import { VersionDropdown } from './VersionDropdown';
 import { InvenioRDMRecordActions } from './InvenioRDMRecordActions';
 import { InvenioRDMRecordFileUpload } from './InvenioRDMRecordFileUpload';
 import { RecordActionProvider, RecordActionStatus } from './RecordActionStatus';
+import { InvenioRDMRecordAuthors } from './InvenioRDMRecordAuthors';
 
 /** Properties used to display a record and its available interactions. */
 export type InvenioRDMRecordRendererProps = {
@@ -125,6 +126,7 @@ const InvenioRDMRecordRendererHeader: React.FC<
             />
           </div>
         </div>
+        <InvenioRDMRecordAuthors creators={record.metadata?.creators} />
         <div className="mb-1 text-xs text-muted">
           <div>ID: {record.id}</div>
           <div>

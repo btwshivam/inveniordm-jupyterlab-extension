@@ -17,7 +17,7 @@ function textContent(node: React.ReactNode): string {
 }
 
 describe('InvenioRDMRecordAuthors', () => {
-  it('renders creator names in a compact comma-separated list', () => {
+  it('renders creator names in a compact semicolon-separated list', () => {
     const rendered = InvenioRDMRecordAuthors({
       creators: [
         {
@@ -36,7 +36,7 @@ describe('InvenioRDMRecordAuthors', () => {
       ]
     });
 
-    expect(textContent(rendered)).toBe('Authors:Lovelace, Ada, Grace Hopper');
+    expect(textContent(rendered)).toBe('Authors:Lovelace, Ada; Grace Hopper');
   });
 
   it('renders nothing when creators are unavailable', () => {

@@ -23,7 +23,7 @@ function creatorName(creator: InvenioRDMCreator): string {
 export const InvenioRDMRecordAuthors: React.FC<
   InvenioRDMRecordAuthorsProps
 > = ({ creators }) => {
-  if(!creators?.length) {
+  if (!creators?.length) {
     return null;
   }
 

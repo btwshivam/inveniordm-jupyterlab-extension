@@ -136,7 +136,17 @@ const InvenioRDMRecordRendererHeader: React.FC<
             Modified: <HumanReadableDate value={record.updated} />
           </div>
           {record.pids?.doi?.identifier ? (
-            <div>DOI: {record.pids.doi.identifier}</div>
+            <div>
+              DOI:{' '}
+              <a
+                href={`https://doi.org/${record.pids.doi.identifier}`}
+                target="_blank"
+                rel="noreferrer"
+                className="invenio-rdm-doi-link"
+              >
+                {record.pids.doi.identifier}
+              </a>
+            </div>
           ) : null}
           {`${record.files?.count ?? 0} file${record.files?.count === 1 ? '' : 's'}`}{' '}
           in this record.

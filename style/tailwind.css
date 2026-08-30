@@ -46,3 +46,10 @@
   height: 100%;
   min-height: 0;
 }
+
+.jp-InvenioRDMExtensionPanel a.invenio-rdm-doi-link {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 150ms ease;
+}

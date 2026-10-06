@@ -118,12 +118,20 @@ jlpm
 jlpm test
 ```
 
-### Integration tests
+### UI integration tests (Playwright)
 
-This extension uses [Playwright](https://playwright.dev/docs/intro) for the integration tests (aka user level tests).
+This extension uses [Playwright](https://playwright.dev/docs/intro) for the UI integration tests (aka user level tests).
 More precisely, the JupyterLab helper [Galata](https://github.com/jupyterlab/jupyterlab/tree/master/galata) is used to handle testing the extension in JupyterLab.
 
 More information is provided within the [ui-tests](./ui-tests/README.md) README.
+
+### Backend integration tests (against a real InvenioRDM)
+
+Separate from the mocked server tests above, these run the extension's Python
+backend against a real, local dockerised InvenioRDM to check it interacts with
+InvenioRDM correctly (permissions, versioning, the draft-file workaround). They
+are skipped unless such an instance is running, so they do not affect the normal
+`pytest` run. See [integration-tests](./integration-tests/README.md).
 
 ## Packaging the extension
 

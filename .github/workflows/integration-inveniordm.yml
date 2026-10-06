@@ -1,0 +1,35 @@
+name: Integration tests (local InvenioRDM)
+
+# Heavy (boots a full InvenioRDM stack). Runs on manual dispatch, or when a PR
+# touches the integration tests or this workflow -- kept off every other PR.
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'integration-tests/**'
+      - 'inveniordm_jupyterlab/tests/integration/**'
+      - '.github/workflows/integration-inveniordm.yml'
+
+jobs:
+  integration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Base Setup
+        uses: jupyterlab/maintainer-tools/.github/actions/base-setup@v1
+
+      - name: Install extension with test extras
+        run: python -m pip install ".[test]"
+
+      - name: Boot InvenioRDM and mint tokens
+        run: bash integration-tests/start-instance.sh
+
+      - name: Run integration tests
+        run: pytest -m integration -vv
+
+      - name: InvenioRDM logs on failure
+        if: failure()
+        run: docker compose -f integration-tests/.instance/jlab-integration/docker-compose.full.yml logs --tail=200

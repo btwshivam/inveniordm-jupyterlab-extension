@@ -2,7 +2,7 @@
 
 These run the extension's Python backend (`InvenioRDMRequests`) against a
 **real, local InvenioRDM** instead of mocked HTTP, to check the extension
-*interacts with InvenioRDM correctly*: permission resolution, version/draft
+_interacts with InvenioRDM correctly_: permission resolution, version/draft
 merging, the draft-file workaround, and record create/upload/delete round-trips.
 They live in `inveniordm_jupyterlab/tests/integration/` and are marked
 `@pytest.mark.integration`.
